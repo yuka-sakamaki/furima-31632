@@ -23,11 +23,11 @@
 | ----------------- | ---------- | ------------------------------ |
 | name              | string     | null: false                    |
 | explanation       | text       | null: false                    |
-| category          | integer    | null: false                    |
-| condition         | integer    | null: false                    |
-| postage_payer     | integer    | null: false                    |
-| prefecture_code   | integer    | null: false                    |
-| days_to_ship      | integer    | null: false                    |
+| category_id       | integer    | null: false                    |
+| condition_id      | integer    | null: false                    |
+| postage_payer_id  | integer    | null: false                    |
+| prefecture_code_id| integer    | null: false                    |
+| days_to_ship_id   | integer    | null: false                    |
 | price             | string     | null: false                    |
 | user_id           | integer    | null: false, foreign_key: true |
 
@@ -39,18 +39,19 @@
 
 ## destinations テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| post_code        | integer    | null: false                    |
-| prefecture_code  | integer    | null: false                    |
-| city             | string     | null: false                    |
-| block            | string     | null: false                    |
-| building         | string     | null: false                    |
-| phone_number     | string     | null: false                    |
+| Column             | Type       | Options                        |
+| ----------------   | ---------- | ------------------------------ |
+| post_code_id       | integer    | null: false                    |
+| prefecture_code_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| block              | string     | null: false                    |
+| building           | string     | null: false                    |
+| phone_number       | string     | null: false                    |
+| purchases_id       | integer    | null: false, foreign_key: true |
 
 
 ### Association
-- has_one :purchase
+- belongs_to :purchase
 
 
 ## purchases テーブル
@@ -59,13 +60,12 @@
 | ----------------- | ---------- | ------------------------------ |
 | user_id           | integer    | null: false, foreign_key: true |
 | item_id           | integer    | null: false, foreign_key: true |
-| destination_id    | integer    | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :items
 - belongs_to :users
-- belongs_to :destinations
+- has_one :destination
 
 ## comments テーブル
 
