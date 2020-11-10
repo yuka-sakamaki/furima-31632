@@ -23,13 +23,13 @@
 | ----------------- | ---------- | ------------------------------ |
 | name              | string     | null: false                    |
 | explanation       | text       | null: false                    |
-| category          | string     | null: false                    |
-| condition         | string     | null: false                    |
-| postage_payer     | string     | null: false                    |
-| prefecture_code   | string     | null: false                    |
-| days_to_ship      | string     | null: false                    |
+| category          | integer    | null: false                    |
+| condition         | integer    | null: false                    |
+| postage_payer     | integer    | null: false                    |
+| prefecture_code   | integer    | null: false                    |
+| days_to_ship      | integer    | null: false                    |
 | price             | string     | null: false                    |
-| user              | references | null: false, foreign_key: true |
+| user_id           | integer    | null: false, foreign_key: true |
 
 ### Association
 
@@ -41,14 +41,12 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| post_code        | string     | null: false                    |
-| prefecture_code  | string     | null: false                    |
+| post_code        | integer    | null: false                    |
+| prefecture_code  | integer    | null: false                    |
 | city             | string     | null: false                    |
 | block            | string     | null: false                    |
 | building         | string     | null: false                    |
 | phone_number     | string     | null: false                    |
-| user             | references | null: false, foreign_key: true |
-| item             | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -59,9 +57,9 @@
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| user              | references | null: false, foreign_key: true |
-| item              | references | null: false, foreign_key: true |
-| destination       | references | null: false, foreign_key: true |
+| user_id           | integer    | null: false, foreign_key: true |
+| item_id           | integer    | null: false, foreign_key: true |
+| destination_id    | integer    | null: false, foreign_key: true |
 
 ### Association
 
@@ -74,8 +72,8 @@
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | text    | text       | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+| user_id | integer    | null: false, foreign_key: true |
+| item_id | integer    | null: false, foreign_key: true |
 
 ### Association
 - belong_to :user
