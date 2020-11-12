@@ -1,6 +1,5 @@
 // function item_price(){
   window.addEventListener("load", function(){
-  console.log("test")
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;

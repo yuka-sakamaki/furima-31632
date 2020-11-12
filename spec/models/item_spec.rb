@@ -64,10 +64,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
+      it "価格が¥10,000,000だと登録できない" do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
       it "価格が半角数値でないと登録できない" do
         @item.price = "９００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
-     end
+      end
+       it "カテゴリーで--を選択すると登録できない" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it "商品の状態で--を選択すると登録できない" do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it "配送料の負担で--を選択すると登録できない" do
+        @item.postage_payer_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage payer must be other than 1")
+      end
+      it "発送までの日数で--を選択すると登録できない" do
+        @item.days_to_ship_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
+      end
   end
 end
