@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :orders
 - has_many :comments
 
 ## items テーブル
@@ -33,28 +33,28 @@
 
 ### Association
 
-- has_one :purchases
-- belongs_to :users
+- has_one :order
+- belongs_to :user
 - has_many   :comments
 
-## destinations テーブル
+## addresses テーブル
 
 | Column             | Type       | Options                        |
 | ----------------   | ---------- | ------------------------------ |
 | post_code_id       | integer    | null: false                    |
 | prefecture_code_id | integer    | null: false                    |
 | city               | string     | null: false                    |
-| block              | string     | null: false                    |
-| building           | string     | null: false                    |
+| house_number       | string     | null: false                    |
+| building_name      | string     | null: false                    |
 | phone_number       | string     | null: false                    |
-| purchases_id       | integer    | null: false, foreign_key: true |
+| order_id           | integer    | null: false, foreign_key: true |
 
 
 ### Association
-- belongs_to :purchase
+- belongs_to :order
 
 
-## purchases テーブル
+## orders テーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
@@ -63,9 +63,8 @@
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
-- has_one :destination
+- belongs_to :item
+- belongs_to :user
 
 ## comments テーブル
 

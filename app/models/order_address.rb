@@ -8,9 +8,8 @@ class OrderAddress
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
     validates :house_number
     validates :phone_number, format: { with: /\A\d{11}\z/ }
+    validates :token, presence: true
   end
-
-  validates :token, presence: true
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

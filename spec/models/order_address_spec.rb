@@ -14,9 +14,6 @@ RSpec.describe OrderAddress, type: :model do
         @address.building_name = nil
         expect(@address).to be_valid
       end
-      it 'tokenがあれば保存ができること' do
-        expect(@address).to be_valid
-      end
     end
 
     context '正しく保存できない時' do
@@ -57,6 +54,11 @@ RSpec.describe OrderAddress, type: :model do
       end
       it 'phone_numberが数字でないと登録できないこと' do
         @address.phone_number = 'abc'
+        @address.valid?
+        expect(@address.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberが12桁では登録できない' do
+        @address.phone_number = '090123456789'
         @address.valid?
         expect(@address.errors.full_messages).to include('Phone number is invalid')
       end
