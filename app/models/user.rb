@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchases
   has_many :comments
+  has_one :address
+  has_many :orders
 
   validates :nickname, :last_name, :first_name, :last_name_katakana, :first_name_katakana, :birthday, presence: true
   validates :last_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
