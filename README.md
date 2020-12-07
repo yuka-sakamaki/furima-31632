@@ -36,6 +36,8 @@
 - has_one :order
 - belongs_to :user
 - has_many   :comments
+- has_many :item_tag_relations
+- has_many :tags, through: :item_tag_relations
 
 ## addresses テーブル
 
@@ -67,14 +69,23 @@
 - belongs_to :user
 - has_one :address
 
-## comments テーブル
+
+## tags テーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| name    | string     | null: false, uniqueness: true  |
+
+### Association
+- has_many :item_tag_relations
+- has_many :items, through: :item_tag_relations
+
+## item_tag_relations テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| text    | text       | null: false                    |
-| user_id | integer    | null: false, foreign_key: true |
-| item_id | integer    | null: false, foreign_key: true |
+| tag_id  | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
 
 ### Association
-- belong_to :user
+- belong_to :tag
 - belong_to :item
