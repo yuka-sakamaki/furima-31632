@@ -25,7 +25,7 @@
       </span>
     </div>
 
-    <% if item.order.present? %>
+    <% unless @item.order.present? %>
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if user_signed_in? %>
     <% if current_user.id == @item.user_id %>
