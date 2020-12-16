@@ -26,6 +26,14 @@ class Item < ApplicationRecord
       tag = Tag.find_or_create_by(tag_name: tag.downcase.delete('#'))
       item.tags << tag
     end
+
+    before_update do
+      item = Item.find_by(id: id)
+      tags = hashname.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+      tags.uniq.map do |tag|
+        tag = Tag.find_or_create_by(tag_name: tag.downcase.delete('#'))
+        item.tags << tag
+      end
   end
 
 end
